@@ -10,14 +10,19 @@ const getById = (movie_id) => {
     .first()
 }
 
-const create = async(movie) => {
+const add = async(movie) => {
   const [movie_id] = await db('movies')
     .insert(movie)
   return getById(movie_id)
 }
 
+const remove = async (movie_id) => {
+  return db('movies').where('movie_id', movie_id).del();
+};
+
 module.exports = {
   getAll,
   getById,
-  create,
+  add,
+  remove
 }

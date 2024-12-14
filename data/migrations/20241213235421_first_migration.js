@@ -4,7 +4,7 @@ exports.up = async function(knex) {
         tbl.increments('movie_id')
         tbl.string('movie_name', 64).notNullable()
         tbl.string('director_name', 32).notNullable()
-        tbl.string('release_date', 32).notNullable()
+        tbl.integer('release_date', 4).notNullable()
         tbl.integer('box_office').notNullable()
         tbl.integer('run_time')
     })

@@ -27,11 +27,24 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const newMovie = await Movies.create(req.body)
+        const newMovie = await Movies.add(req.body)
         res.status(201).json(newMovie)
     } catch (err) {
         next(err)
     }
 })
 
-module.exports = router
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const delMovie = await Movies.remove(req.params.id)
+        if (delMovie) {
+            res.status(200).json({ message: `Movie ID: ${req.params.id} deleted` })
+        } else {
+            res.status(404).json({ message: "Movie not found" })
+        }
+    } catch (err) {
+        next(err)
+    }
+})
+
+module.exports = router 

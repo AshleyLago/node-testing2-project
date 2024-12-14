@@ -2,9 +2,9 @@ exports.seed = function(knex) {
   return knex('movies').del()
     .then(function () {
       return knex('movies').insert([
-        {movie_id: 1, movie_name: 'No Country for Old Men', director_name: 'Joel Coen', release_date: 'November 9, 2007', box_office: 171600000, run_time: 122},
-        {movie_id: 2, movie_name: 'Interstellar', director_name: 'Christopher Nolan', release_date: 'October 26, 2014', box_office: 722400000, run_time: null},
-        {movie_id: 3, movie_name: 'Mad Max: Fury Road', director_name: 'George Miller', release_date: 'May 15, 2015', box_office: 173800000, run_time: 120},
+        {movie_id: 1, movie_name: 'No Country for Old Men', director_name: 'Joel Coen', release_date: 2007, box_office: 171600000, run_time: 122},
+        {movie_id: 2, movie_name: 'Interstellar', director_name: 'Christopher Nolan', release_date: 2014, box_office: 722400000, run_time: null},
+        {movie_id: 3, movie_name: 'Mad Max: Fury Road', director_name: 'George Miller', release_date: 2015, box_office: 173800000, run_time: 120},
       ]);
     });
 };
