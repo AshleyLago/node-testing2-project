@@ -34,17 +34,4 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.delete('/:id', async (req, res, next) => {
-    try {
-        const delMovie = await Movies.remove(req.params.id)
-        if (delMovie) {
-            res.status(200).json({ message: `Movie ID: ${req.params.id} deleted` })
-        } else {
-            res.status(404).json({ message: "Movie not found" })
-        }
-    } catch (err) {
-        next(err)
-    }
-})
-
 module.exports = router 

@@ -16,13 +16,8 @@ const add = async(movie) => {
   return getById(movie_id)
 }
 
-const remove = async (movie_id) => {
-  return db('movies').where('movie_id', movie_id).del();
-};
-
 module.exports = {
   getAll,
   getById,
   add,
-  remove
 }

@@ -1,6 +1,13 @@
 const db = require('../../data/db-config');
 const Movies = require('./model');
 
+const newMovie = {
+  movie_name: "WALL-E", 
+  director_name: "Andrew Stanton", 
+  release_date: "June 27, 2008", 
+  box_office: 532500000
+}
+
 beforeAll(async () => {
   await db.migrate.rollback();
   await db.migrate.latest();
@@ -14,29 +21,24 @@ afterAll(async () => {
   await db.destroy(); // Close database connection after tests
 });
 
-describe('Movies Model Tests', () => {
-  test('should initialize database properly', async () => {
-    const movies = await Movies.getAll();
-    expect(movies).toB      
-  });
+describe('[A] getAll', () => {
+  test('  [1] Returns the original movies', async () => {
+    const result = await Movies.getAll()
+    expect(result).toHaveLength(3)
+  })
 })
 
-describe('Movies Model Tests', () => {
-  test('should initialize database properly', async () => {
-    const movies = await Movies.getAll();
-    expect(movies).toEqual([]); // Assuming an empty database initially
-  });
+describe('[B] getById', () => {
+  test('  [2] Returns the correct movie', async () => {
+    const result = await Movies.getById(1)
+    expect(result.movie_name).toBe("No Country for Old Men")
+  })
 })
 
-describe('Movies Model Tests', () => {
-  test('should initialize database properly', async () => {
-    const movies = await Movies.getAll();
-    expect(movies).toEqual([]); // Assuming an empty database initially
-  });
-})
-
-describe('Movies Model Tests', () => {
-  test('should initialize database properly', async () => {
-    const movies = await Movies.getAll();
-    expect(movies).toB
+describe('[C] add', () => {
+  test('  [3] Succesfully adds the movie', async () => {
+    await Movies.add(newMovie)
+    const result = await Movies.getById(4)
+    expect(result.movie_name).toBe("WALL-E")
+  })
 })
